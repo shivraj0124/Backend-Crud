@@ -1,7 +1,10 @@
 const express = require('express');
 const app=express();
 const cors =require('cors');
+const dotenv =require("dotenv");
+const PORT = process.env.PORT || 7000
 
+dotenv.config()
 
 app.use(cors({
     orgin:'*'
@@ -23,7 +26,7 @@ mongoose.connect(DB,options).then(()=>{
 const postRoute=require('./routes/post_route');
 app.use('/api',postRoute);
 
-app.listen(7000,()=>{
+app.listen(PORT,()=>{
     console.log("Server is running");
 })
 
