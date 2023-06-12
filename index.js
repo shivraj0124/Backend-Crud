@@ -8,23 +8,22 @@ app.use(cors({
 }));
 
 const mongoose = require('mongoose');
+var DB = mongoose.set('strictQuery',false);
+var DB ="mongodb+srv://shivraj:Sk5678@cluster0.ajlaoxj.mongodb.net/ReactBackend?retryWrites=true&w=majority";
 
-const DB ="mongodb+srv://shivraj:Sk5678@cluster0.ajlaoxj.mongodb.net/ReactBackend?retryWrites=true&w=majority";
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS:5000,
-  connectTiomeoutMS:30000,
 };
 mongoose.connect(DB,options).then(()=>{
-    console.log('Connection successfull...');
+    console.log('Connection successful...');
 }).catch((err)=> console.log(err));
  
 
 const postRoute=require('./routes/post_route');
 app.use('/api',postRoute);
 
-app.listen(8000,()=>{
+app.listen(7000,()=>{
     console.log("Server is running");
 })
 
