@@ -10,13 +10,15 @@ app.use(cors({
 const mongoose = require('mongoose');
 
 const DB ="mongodb+srv://shivraj:Sk5678@cluster0.ajlaoxj.mongodb.net/ReactBackend?retryWrites=true&w=majority";
-
-mongoose.connect(DB,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-}).then(()=>{
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS:5000,
+  connectTiomeoutMS:30000,
+};
+mongoose.connect(DB,options).then(()=>{
     console.log('Connection successfull...');
-}).catch((err)=> console.log('no connection'));
+}).catch((err)=> console.log(err));
  
 
 const postRoute=require('./routes/post_route');
